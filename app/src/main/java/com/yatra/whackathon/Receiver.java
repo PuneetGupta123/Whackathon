@@ -1,10 +1,15 @@
 package com.yatra.whackathon;
 
+import android.app.KeyguardManager;
 import android.app.Service;
+import android.app.admin.DevicePolicyManager;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.os.PowerManager;
 import android.util.Log;
+import android.view.Window;
+import android.view.WindowManager;
 
 import java.util.Timer;
 import java.util.TimerTask;
@@ -19,18 +24,6 @@ public class Receiver extends BroadcastReceiver {
 
     public Receiver (Service service) {
         this.service=service;
-
-        thread = new Thread(new Runnable() {
-            @Override
-            public void run() {
-                try {
-                    Thread.sleep(3000);
-                    countPowerOff = 0;
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
-        });
     }
 
 
@@ -46,12 +39,33 @@ public class Receiver extends BroadcastReceiver {
         }
 
         if (countPowerOff == 1) {
+            thread = new Thread(new Runnable() {
+                @Override
+                public void run() {
+                    try {
+                        Thread.sleep(3000);
+                        countPowerOff = 0;
+                        thread = null;
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                }
+            });
             thread.start();
-
         } else if(countPowerOff==5) {
-            thread.interrupt();
+            if (thread != null) {
+                thread.interrupt();
+                thread = null;
+            }
             countPowerOff = 0;
-            Intent i =new Intent(context, SplashScreen.class);
+
+            PowerManager pm = (PowerManager)context.getSystemService(Context.POWER_SERVICE);
+            PowerManager.WakeLock wakeLock = pm.newWakeLock(PowerManager.FULL_WAKE_LOCK
+                    | PowerManager.ACQUIRE_CAUSES_WAKEUP
+                    | PowerManager.ON_AFTER_RELEASE, "MyWakeLock");
+            wakeLock.acquire();
+
+            Intent i =new Intent(context, WakeUpActivity.class);
             i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
             context.startActivity(i);
         }

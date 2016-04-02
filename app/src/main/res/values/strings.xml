@@ -5,4 +5,13 @@
     <string name="title_activity_splash_screen">SplashScreen</string>
     <string name="dummy_button">Dummy Button</string>
     <string name="dummy_content">DUMMY\nCONTENT</string>
+    <string name="title_activity_question_manager">QuestionManager</string>
+    <string name="title_activity_name_question">nameQuestionActivity</string>
+    <string name="title_activity_voice_recognition">VoiceRecognitionActivity</string>
+    <string name="title_activity_wake_up">WakeUpActivity</string>
+    <string name="title_activity_city_question">CityQuestionActivity</string>
+    <string name="title_activity_to_city_question">ToCityQuestionActivity</string>
+    <string name="title_activity_date_date_question">DateDateQuestionActivity</string>
+    <string name="title_activity_date_month_question">DateMonthQuestion</string>
+    <string name="title_activity_date_year_question">DateYearQuestion</string>
 </resources>

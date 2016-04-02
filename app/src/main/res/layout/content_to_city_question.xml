@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#448aff"
+    android:padding="16dp"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+    tools:context="com.yatra.whackathon.questions.FromCityQuestionActivity"
+    tools:showIn="@layout/activity_to_city_question">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingLeft="20dp"
+        android:text="What is your destination?"
+        android:textSize="35sp"
+        android:gravity="center"
+        android:paddingTop="70dp"
+        android:id="@+id/text"
+        android:paddingRight="40dp" />
+    <com.rengwuxian.materialedittext.MaterialEditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="destination"
+        android:layout_marginTop="20dp"
+        android:id="@+id/city"
+        android:layout_below="@+id/text"
+        android:paddingLeft="20dp"
+        app:met_baseColor="#ffffff"
+        android:paddingRight="40dp"
+        app:met_primaryColor="#ffffff"
+        app:met_errorColor="#ddaa00"
+        app:met_floatingLabel="normal"
+        />
+    <ImageButton
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerHorizontal="true"
+        android:id="@+id/next_question"
+        android:layout_marginTop="40sp"
+        android:layout_below="@+id/city"
+        android:src="@android:drawable/ic_media_next"/>
+</RelativeLayout>

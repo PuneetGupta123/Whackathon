@@ -3,22 +3,19 @@ package com.yatra.whackathon;
 import android.content.Intent;
 import android.os.Bundle;
 import android.speech.tts.TextToSpeech;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.Toolbar;
-import android.view.View;
-import android.widget.TabHost;
+import android.util.Log;
 import android.widget.Toast;
 
-import org.w3c.dom.Text;
-
 import java.util.Locale;
-import java.util.regex.Pattern;
+
+import com.yatra.whackathon.questions.DateDateQuestionActivity;
+import com.yatra.whackathon.questions.NameQuestionActivity;
+import com.yatra.whackathon.questions.ToCityQuestionActivity;
 
 public class SplashScreen extends AppCompatActivity {
 
-    private TextToSpeech textToSpeech;
+    static public TextToSpeech textToSpeech;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,8 +30,6 @@ public class SplashScreen extends AppCompatActivity {
             public void onInit(int i) {
                 if (i == TextToSpeech.SUCCESS) {
                     textToSpeech.setLanguage(Locale.getDefault());
-                    textToSpeech.speak("Welcome to our application. blah! blah!", TextToSpeech.QUEUE_ADD, null, null);
-
                     // TODO : Download if language not availaible
                 } else {
                     Toast.makeText(getApplicationContext(), "Unable to initialize text to speech engine", Toast.LENGTH_LONG).show();
@@ -46,13 +41,19 @@ public class SplashScreen extends AppCompatActivity {
             @Override
             public void run() {
                 try {
-                    Thread.sleep(5000);
+                    Log.e("SplashScreen", "This is thread");
+                    Thread.sleep(500);
+                    textToSpeech.speak("Hi, Welcome to Yatra dot com", TextToSpeech.QUEUE_ADD, null, null);
+                    while(textToSpeech.isSpeaking()) {
+                        Thread.sleep(10);
+                    }
+                    Thread.sleep(500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 } finally {
-                    Intent intent  = new Intent(SplashScreen.this, MainActivity.class);
-                    startActivity(intent);
+                    Intent intent  = new Intent(SplashScreen.this, NameQuestionActivity.class);
                     finish();
+                    startActivity(intent);
                 }
             }
         }).start();

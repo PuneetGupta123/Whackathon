@@ -2,8 +2,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.yatra.whackathon">
 
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
-
+    <uses-permission android:name="android.permission.RECORD_AUDIO" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.INTERNET"/>
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -25,7 +28,9 @@
             </intent-filter>
         </activity>
 
-        <service android:name=".MyService" android:enabled="true"/>
+        <service
+            android:name=".MyService"
+            android:enabled="true" />
 
         <receiver
             android:name=".Receiver"
@@ -37,6 +42,43 @@
                 <action android:name="android.intent.action.SCREEN_ON" />
             </intent-filter>
         </receiver>
+
+        <activity
+            android:name=".questions.QuestionManager"
+            android:label="@string/title_activity_question_manager"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".questions.NameQuestionActivity"
+            android:label="@string/title_activity_name_question"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".VoiceRecognitionActivity"
+            android:label="@string/title_activity_voice_recognition"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".WakeUpActivity"
+            android:label="@string/title_activity_wake_up"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".questions.FromCityQuestionActivity"
+            android:label="@string/title_activity_city_question"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".questions.ToCityQuestionActivity"
+            android:label="@string/title_activity_to_city_question"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".questions.DateDateQuestionActivity"
+            android:label="@string/title_activity_date_date_question"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".questions.DateMonthQuestionActivity"
+            android:label="@string/title_activity_date_month_question"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity
+            android:name=".questions.DateYearQuestionActivity"
+            android:label="@string/title_activity_date_year_question"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
     </application>
 
 </manifest>

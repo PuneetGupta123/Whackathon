@@ -35,7 +35,6 @@ public class MyService extends Service {
         IntentFilter screenStateFilter = new IntentFilter();
         screenStateFilter.addAction(Intent.ACTION_SCREEN_ON);
         screenStateFilter.addAction(Intent.ACTION_SCREEN_OFF);
-        screenStateFilter.addAction(Intent.ACTION_HEADSET_PLUG);
         receiver = new Receiver(this);
         getApplicationContext().registerReceiver(receiver, screenStateFilter);
     }
